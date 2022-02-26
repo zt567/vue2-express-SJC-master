@@ -3,9 +3,6 @@ import Router from 'vue-router'
 
 import LandPage from '@/components/LandPage'
 
-import AddObj from '@/components/AddObj'
-import AddMoney from '@/components/AddMoney'
-
 import WebCam from '@/components/WebCam'
 
 import SendSelect from '@/components/SendObj/SendSelect'
@@ -33,11 +30,6 @@ export default new Router({
       component: SendMoneyPage
     },
     {
-      path: '/AddObj',
-      name: 'AddObj',
-      component: AddObj
-    },
-    {
       path: '/LandPage',
       name: 'LandPage',
       component: LandPage
@@ -61,11 +53,6 @@ export default new Router({
       path: '/SendSelect',
       name: 'SendSelect',
       component: SendSelect
-    },
-    {
-      path: '/AddMoney',
-      name: 'AddMoney',
-      component: AddMoney
     },
     {
       path: '/WebCam',

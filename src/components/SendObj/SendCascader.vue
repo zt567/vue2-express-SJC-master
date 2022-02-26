@@ -15,7 +15,7 @@
       :options="recioptions"
     >
     </el-cascader>
-    <!-- <WebCam /> -->
+    <WebCam />
   </div>
 </template>
 <script>
@@ -1804,6 +1804,7 @@ export default {
 .el-cascader .el-input__inner {
   text-align: center;
   font-size: 50px;
+  line-height: 50px;
   width: 700px;
   height: 100px;
 }

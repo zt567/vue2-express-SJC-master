@@ -1,39 +1,43 @@
 <template>
   <div>
-    <code v-if="device">當前相機:{{ device.label }}</code>
-    <code v-if="!device">未偵測到相機</code>
-    <vue-web-cam
-      ref="webcam"
-      :device-id="deviceId"
-      width="30%"
-      @started="onStarted"
-      @stopped="onStopped"
-      @error="onError"
-      @cameras="onCameras"
-      @camera-change="onCameraChange"
-    />
-    <select v-model="camera">
-      <option>-- Select Device --</option>
-      <option
-        v-for="device in devices"
-        :key="device.deviceId"
-        :value="device.deviceId"
-      >
-        {{ device.label }}
-      </option>
-    </select>
-    <button type="button" class="" @click="onCapture">
-      Capture Photo
-    </button>
-    <button type="button" class="" @click="onStop">
-      Stop Camera
-    </button>
-    <button type="button" class="" @click="onStart">
-      Start Camera
-    </button>
-    <figure class="figure">
-      <img :src="img" class="img-responsive" width="300px" />
-    </figure>
+    <el-row type="flex" class="row-bg" justify="space-around">
+      <el-col :span="6">
+        <div class="camara-select">
+          <code v-if="!device">未偵測到相機</code>
+          <el-select v-model="camera">
+            <option>-選擇鏡頭-</option>
+            <option
+              v-for="device in devices"
+              :key="device.deviceId"
+              :value="device.deviceId"
+            >
+              {{ device.label }}
+            </option>
+          </el-select>
+        </div>
+        <el-button type="primary" @click="onCapture" circle
+          ><i class="el-icon-camera-solid"></i>
+        </el-button>
+      </el-col>
+      <el-col :span="6">
+        <div class="outer">
+          <vue-web-cam
+            ref="webcam"
+            :device-id="deviceId"
+            @started="onStarted"
+            @stopped="onStopped"
+            @error="onError"
+            @cameras="onCameras"
+            @camera-change="onCameraChange"
+          />
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <figure class="figure">
+          <img :src="img" class="img-responsive" />
+        </figure>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
@@ -100,3 +104,30 @@ export default {
   },
 };
 </script>
+
+<style>
+.outer{
+  width: 250px;
+  height: 250px;
+}
+.camara-select {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+.el-button {
+  margin-top: 70px;
+  margin-left: 42%;
+  font-size: 50px;
+}
+video {
+  margin-top: -30px;
+  border-radius: 20px;
+  width: 300px;
+  height: 300px;
+}
+.img-responsive {
+  width: 250px;
+  margin-left: -38px;
+  border-radius: 20px;
+}
+</style>
